@@ -25,3 +25,7 @@ Route::get('/enonce', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::view('/', 'accueil')->name('home.accueil');
+
+Route::resource('jeux', '\App\Http\Controllers\JeuController');
