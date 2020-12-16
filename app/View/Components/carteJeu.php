@@ -10,13 +10,11 @@ class carteJeu extends Component
     public $photo, $nom, $editeur, $theme, $mecaniques;
     public function __construct(Jeu $jeu)
     {
-        $this->photo = $jeu->fillable(4);
-        $this->nom = $jeu->fillable(0);
-        $this->editeur = $jeu->editeur();
-        $this->theme = $jeu->theme();
-        $this->mecaniques = $jeu->mecaniques();
-
-
+        $this->photo = $jeu->url_media;
+        $this->nom = $jeu->nom;
+        $this->editeur = $jeu->editeur;
+        $this->theme = $jeu->theme;
+        $this->mecaniques = $jeu->mecaniques;
     }
 
     /**
