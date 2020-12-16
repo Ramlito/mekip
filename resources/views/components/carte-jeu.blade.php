@@ -1,14 +1,16 @@
 <div class="card" style="width: 18rem;">
-    <img src="https://i.pravatar.cc/150?u=fake@pravatar.com" class="card-img-top" alt="avatar">
+    @if(isset($jeu->url_media))
+    <img src="{{url($jeu->url_media)}}" class="card-img-top" alt="avatar">
+    @endif
     <div class="card-body">
-        <img src={{$photo}}>
-        <h5 class="card-title">{{$name}}</h5>
-        <p>Éditeur : {{$editeur}}</p>
-        <p>Thème : {{$theme}}</p>
+        <img src={{$jeu->photo}}>
+        <h5 class="card-title">{{$jeu->nom}}</h5>
+        <p>Éditeur : {{$jeu->editeur->nom}}</p>
+        <p>Thème : {{$jeu->theme->nom}}</p>
         <ul>
-            @foreach($mecaniques as $mecanique){
+            @foreach($jeu->mecaniques as $mecanique)
                 <li>{{$mecanique->nom}}</li>
-            }
+            @endforeach
         </ul>
     </div>
 </div>
