@@ -32,12 +32,12 @@ class DatabaseSeeder extends Seeder {
             ]
         );
         $faker = Factory::create('fr_FR');
-        $jeux = Jeu::factory(50)->create();
-        $mecanisque_ids = Mecanique::all()->pluck('id');
+        $jeux = Jeu::factory(51)->create();
+        $mecanique_ids = Mecanique::all()->pluck('id');
         $user_ids = User::all()->pluck('id');
         foreach ($jeux as $jeu) {
             $nbMecs = $faker->numberBetween(1, 3);
-            $mecs = $faker->randomElements($mecanisque_ids, $nbMecs);
+            $mecs = $faker->randomElements($mecanique_ids, $nbMecs);
             $jeu->mecaniques()->attach($mecs);
             $nbAchats = $faker->numberBetween(2, 5);
             $achat_ids = $faker->randomElements($user_ids, $nbAchats);
