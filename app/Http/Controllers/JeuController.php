@@ -27,4 +27,16 @@ class JeuController extends Controller
         }
         return view('jeux.random', ['jeux' => $jeux]);
     }
+    public function regle($id){
+        $jeu = Jeu::find($id);
+        return view('jeux.regle',['jeu' => $jeu]);
+    }
+    public function show($id){
+        $jeu = Jeu::find($id);
+        return view('jeux.show',['jeu' => $jeu]);
+    }
+    public function tri(){
+        $jeux = Jeu::all()->sortBy('nom');
+        return view('jeux.tri', ['jeux' => $jeux]);
+    }
 }

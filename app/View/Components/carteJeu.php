@@ -7,14 +7,10 @@ use Illuminate\View\Component;
 
 class carteJeu extends Component
 {
-    public $photo, $nom, $editeur, $theme, $mecaniques;
+    public $jeu;
     public function __construct(Jeu $jeu)
     {
-        $this->photo = $jeu->url_media;
-        $this->nom = $jeu->nom;
-        $this->editeur = $jeu->editeur;
-        $this->theme = $jeu->theme;
-        $this->mecaniques = $jeu->mecaniques;
+        $this->jeu = $jeu;
     }
 
     /**
