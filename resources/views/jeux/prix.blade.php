@@ -4,9 +4,6 @@
 </head>
 <body>
 <h1>Nom du Jeu : {{$jeu->nom}}</h1>
-@foreach($jeu->acheteurs as $element)
-<h2>{{$element -> achat -> prix}}</h2>
-@endforeach
 <h3>Prix minimum : {{$min}}</h3>
 <h3>Prix maximum : {{$max}}</h3>
 <h3>Prix moyen : {{$moyenne}}</h3>
