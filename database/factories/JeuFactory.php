@@ -27,7 +27,6 @@ class JeuFactory extends Factory {
         $user_ids = User::all()->pluck('id');
         return [
             'titre' => $this->faker->words(2, true),
-            'mecaniques' => $this->faker->text(100),
             'univers' => $this->faker->text(100),
             'nom' => $this->faker->words(2, true),
             'description' => $this->faker->text(300),

@@ -5,7 +5,7 @@
 <body>
 <h2>La liste des jeux</h2>
 
-<a href="http://127.0.0.1:8000/tri">Trier la liste</a>
+<a href="http://127.0.0.1:8000/jeux">Retour à la normale</a>
 
 @if(!empty($jeux))
     <ul>

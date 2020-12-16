@@ -17,7 +17,6 @@ class CreateJeuxTable extends Migration
             $table->id();
             $table->string('nom', 100);
             $table->string('titre', 100);
-            $table->text('mecaniques');
             $table->text('univers');
             $table->text('description');
             $table->text('regles')->nullable(true);

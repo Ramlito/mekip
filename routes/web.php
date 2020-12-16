@@ -29,5 +29,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('games','App\Http\Controllers\GamesController');
 Route::view('/', 'accueil')->name('home.accueil');
 
-Route::get('/jeux', [\App\Http\Controllers\JeuController::class,  'index']);
+Route::get('/jeux', [\App\Http\Controllers\JeuController::class,  'index'])->name('jeux.index');
 Route::get('/random', [\App\Http\Controllers\JeuController::class, 'randomJeu']);
+Route::get('/regle/{id}', [\App\Http\Controllers\JeuController::class, 'regle'])->name('jeux.regle');
+Route::get('/jeux/{id}', [\App\Http\Controllers\JeuController::class,  'show'])->name('jeux.show');
+Route::get('/tri', [\App\Http\Controllers\JeuController::class,  'tri'])->name('jeux.tri');
