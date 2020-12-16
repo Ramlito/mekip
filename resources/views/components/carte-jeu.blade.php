@@ -6,9 +6,9 @@
         <p>Éditeur : {{$editeur}}</p>
         <p>Thème : {{$theme}}</p>
         <ul>
-            @foreach($mecaniques as $mecanique){
+            @foreach($mecaniques as $mecanique)
                 <li>{{$mecanique->nom}}</li>
-            }
+            @endforeach
         </ul>
     </div>
 </div>
