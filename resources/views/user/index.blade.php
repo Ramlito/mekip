@@ -20,7 +20,7 @@
     @else
         <p>Utilisateur déjà connecté</p>
         <p><a href="http://localhost:8000/dashboard">Retour au dashboard</a></p>
-        <p><a href="{{Route('user.collection')}}">Retour au dashboard</a></p>
+        <p><a href="{{Route('user.collection')}}">Collection</a></p>
 @endif
 
 

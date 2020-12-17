@@ -41,6 +41,28 @@ class JeuController extends Controller
         $jeux = Jeu::all()->sortBy('nom');
         return view('jeux.tri', ['jeux' => $jeux]);
     }
+    public function tri_commentaire($id)
+    {
+        $jeu = Jeu::find($id);
+        $commentaires = $jeu->commentaire;
+        $commentaire_trié = [];
+        for ($i = 0; $i <= $jeu->commentaires; $i++){
+            $index =0;
+            $datecom = $jeu->commentaire[0]->date_com;
+            foreach ($commentaires as $commentaire) {
+                if ($datecom > $commentaire->date_com) {
+                    $datecom = $commentaire->date_com;
+                    $commentaire = $commentaire;
+                    $c = $index;
+                }
+                $index++;
+            }
+            $commentaire_trié[] = $commentaires;
+            unset($commentaires[$c]);
+        }
+
+        return view('commentaires.tri_commentaire', ['commentaires' => $commentaire_trié]);
+    }
 
     /*public function editeur($edit){
         $jeux = Jeu::all();
