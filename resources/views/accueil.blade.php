@@ -1,6 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Liste des jeux</title>
+    <meta charset="UTF-8">
+    <title>Page d'accueil</title>
 </head>
 <body>
 @if (auth()->guest())
@@ -21,22 +23,12 @@
     <p>Utilisateur déjà connecté</p>
 @endif
 
-<h2>La liste des jeux</h2>
-
-<a href="http://127.0.0.1:8000/jeux">Retour à la normale</a>
-
-@if(!empty($jeux))
-    <ul>
-        @foreach($jeux as $jeu)
-            @if(($jeu->editeur->nom)==$edit)
-                <li>Nom du jeu : {{$jeu->nom}}, le thème : {{$jeu->theme->nom}}, la durée d'une partie : {{$jeu->duree}}, le nombre de joueurs : {{$jeu->nombre_joueurs}}
-                    <a href="{{route('jeux.show',['id'=>$jeu->id])}}">détails</a> <a href="{{route('user.ajouterAchat',['jid'=>$jeu->id])}}">Ajouter à ma collection</a></li>
-            @endif
-        @endforeach
-    </ul>
-@else
-    <h3>aucune jeu</h3>
-@endif
-
+<h3><b><a href="http://localhost:8000/">Accueil</a></b></h3>
+<ul>
+    <li><a href="http://localhost:8000/jeux">Jeux</a></li>
+</ul>
+<ul>
+    <li><a href="http://localhost:8000/user">Information compte</a></li>
+</ul>
 </body>
 </html>

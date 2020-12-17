@@ -20,7 +20,10 @@ class JeuController extends Controller
     public function index()
     {
         $jeux = Jeu::all();
-        return view('jeux.index', ['jeux' => $jeux]);
+        $mecaniques = Mecanique::all();
+        $themes = Theme::all();
+        $edits = Editeur::all();
+        return view('jeux.index', ['jeux' => $jeux,'mecaniques' => $mecaniques,'themes' => $themes,'edits' => $edits]);
     }
     public function randomJeu()
     {
@@ -96,6 +99,7 @@ class JeuController extends Controller
 
         $moyenne = $moyenne / sizeof($prix);
 
+    public function editeur(Request $request){
         $noteMin = 999999999999999;
         $noteMax = 0;
         $noteMoyenne = 0;
@@ -157,17 +161,17 @@ class JeuController extends Controller
     
     public function editeur($edit){
         $jeux = Jeu::all();
-        return view('jeux.editeur',['jeux' => $jeux,'edit' => $edit]);
+        return view('jeux.editeur',['jeux' => $jeux,'edit' => $request->nomEditeur]);
     }
 
-    public function theme($theme){
+    public function theme(Request $request){
         $jeux = Jeu::all();
-        return view('jeux.theme',['jeux' => $jeux,'theme' => $theme]);
+        return view('jeux.theme',['jeux' => $jeux,'theme' => $request->nomTheme]);
     }
 
-    public function mecanique($meca){
+    public function mecanique(Request $request){
         $jeux = Jeu::all();
-        return view('jeux.mecanique',['jeux' => $jeux,'meca' => $meca]);
+        return view('jeux.mecanique',['jeux' => $jeux,'meca' => $request->nomMeca]);
     }
     public function ajouterComment($jid){
         return view('jeux.ajouterComment',['jid'=>$jid]);

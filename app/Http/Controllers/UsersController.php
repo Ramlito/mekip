@@ -14,6 +14,7 @@ class UsersController extends Controller
         $users = Auth::user();
         return view('user.index', ['users' => $users]);
     }
+
     public function collection(){
         $uid = Auth::id();
         $user = User::find($uid);
@@ -24,14 +25,17 @@ class UsersController extends Controller
         }
         return view('user.collection',['collection' => $collection]);
     }
+
     public function suppression($jid){
         $user = Auth::user();
         $user->ludo_perso()->detach($jid);
         return view('accueil');
     }
+
     public function ajouterAchat($jid){
         return view('user.ajouterJeu',['jid'=>$jid]);
     }
+
     public function storeAchat(Request $request ,$jid){
         $user = Auth::user();
         $user->ludo_perso()->attach($jid,['prix'=> $request->prix, 'date_achat'=> $request->dateAchat, 'lieu'=>$request->lieu]);

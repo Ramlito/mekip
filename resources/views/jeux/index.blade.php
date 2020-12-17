@@ -23,9 +23,42 @@
 
 
 <h2>La liste des jeux</h2>
+<p>
+<input type="button" value="Trier la liste" onClick="window.location.href='http://127.0.0.1:8000/tri'"/>
 
-<a href="http://127.0.0.1:8000/tri">Trier la liste</a>
+<form action="{{route('jeux.editeur')}}" method="post">
+    {{ csrf_field() }}
+    <select size="1" name="nomEditeur">
+        <option value="Editeur">Editeur</option>
+        @foreach($edits as $edit)
+            <option value="{{$edit->nom}}">{{$edit->nom}}</option>
+        @endforeach
+    </select>
+    <input type="submit" value="Trier par éditeur"/>
+</form>
 
+<form action="{{route('jeux.theme')}}" method="post">
+    {{ csrf_field() }}
+    <select size="1" name="nomTheme">
+        <option value="Thème">Thème</option>
+        @foreach($themes as $theme)
+            <option value="{{$theme->nom}}">{{$theme->nom}}</option>
+        @endforeach
+    </select>
+    <input type="submit" value="Trier par thème"/>
+</form>
+
+<form action="{{route('jeux.mecanique')}}" method="post">
+    {{ csrf_field() }}
+    <select size="1" name="nomMeca">
+        <option value="Mécanique">Mécanique</option>
+        @foreach($mecaniques as $meca)
+            <option value="{{$meca->nom}}">{{$meca->nom}}</option>
+        @endforeach
+    </select>
+    <input type="submit" value="Trier par Mécanique"/>
+</form>
+</p>
 @if(!empty($jeux))
     <ul>
         @foreach($jeux as $jeu)
