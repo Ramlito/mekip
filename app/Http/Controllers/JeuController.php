@@ -44,6 +44,35 @@ class JeuController extends Controller
         return view('jeux.tri', ['jeux' => $jeux]);
     }
 
+    public function prix($id){
+        $jeu = Jeu::find($id);
+        $nbJoueurs = 0;
+        $max = 0.0;
+        $min = 999999999999999.9;
+        $moyenne = 0.0;
+        $prix = [];
+        foreach($jeu->acheteurs as $element){
+            $prixElement = $element -> achat -> prix;
+            $prix[] = $prixElement;
+            $nbJoueurs++;
+        }
+        foreach($prix as $element){
+            if($element > $max){
+                $max = $element;
+            }
+        }
+        foreach($prix as $element){
+            if($element < $min){
+                $min = $element;
+            }
+        }
+        foreach($prix as $element){
+            $moyenne += $element;
+        }
+        $moyenne = $moyenne / sizeof($prix);
+        return view('jeux.prix', ['jeu' => $jeu, 'min' => $min, 'max' => $max, 'moyenne' => $moyenne, 'nbJoueurs' => $nbJoueurs]);
+    }
+    
     public function editeur($edit){
         $jeux = Jeu::all();
         return view('jeux.editeur',['jeux' => $jeux,'edit' => $edit]);
