@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('games','App\Http\Controllers\GamesController');
+Route::post('/jeux',[\App\Http\Controllers\JeuController::class, 'storeGame'])->name('jeux.storeGame');
 
 Route::get('/', [\App\Http\Controllers\HomeController::class,  'index'])->name('home.index');
 Route::get('/jeux', [\App\Http\Controllers\JeuController::class,  'index'])->name('jeux.index');

@@ -191,4 +191,29 @@ class JeuController extends Controller
         $commentaire->save();
         return view('accueil');
     }
+    public function storeGame(Request $request)
+    {
+        $uid = Auth::id();
+        $jeu = new Jeu();
+        $jeu->nom = $request->nom;
+        $jeu->description = $request->description;
+        $jeu->theme_id = $request->nomTheme;
+        $jeu->editeur_id = $request->nomEditeur;
+        $jeu->univers = $request->univers;
+        $jeu->url_media = $request->img;
+        $jeu->regles = $request->regles;
+        $jeu->langue = $request->langue;
+        $jeu->nombre_joueurs = $request->nbjoueurs;
+        $jeu->duree = $request->duree;
+        $jeu->user_id = $uid;
+        $jeu->save();
+        $tabMeca = array($request->nomMeca);
+        $jeu->mecaniques()->attach($tabMeca);
+        $jeu->save();
+        $jeux = Jeu::all();
+
+
+
+        return view('accueil', ['jeux'=>$jeux]);
+    }
 }
