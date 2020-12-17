@@ -9,7 +9,8 @@ use App\Models\Jeu;
 
 class UsersController extends Controller
 {
-    public function collection($uid){
+    public function collection(){
+        $uid = Auth::id();
         $user = User::find($uid);
         $collection = [];
         foreach ($user->ludo_perso as $achat){
