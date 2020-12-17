@@ -29,6 +29,7 @@
 </ul>
 <ul>
     <li><a href="http://localhost:8000/user">Information compte</a></li>
+    <li><a href="{{route('jeux.best')}}">Les 5 meilleurs jeux</a></li>
 </ul>
 </body>
 </html>
