@@ -98,8 +98,6 @@ class JeuController extends Controller
         }
 
         $moyenne = $moyenne / sizeof($prix);
-
-    public function editeur(Request $request){
         $noteMin = 999999999999999;
         $noteMax = 0;
         $noteMoyenne = 0;
@@ -158,7 +156,7 @@ class JeuController extends Controller
             'jeux' => $jeux,
             ]);
     }
-    
+
     public function editeur($edit){
         $jeux = Jeu::all();
         return view('jeux.editeur',['jeux' => $jeux,'edit' => $request->nomEditeur]);
