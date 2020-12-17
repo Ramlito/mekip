@@ -44,8 +44,10 @@ Route::get('/collection', [\App\Http\Controllers\UsersController::class,  'colle
 Route::get('/suppression/{jid}', [\App\Http\Controllers\UsersController::class,  'suppression'])->name('user.suppression');
 Route::get('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'ajouterAchat'])->name('user.ajouterAchat');
 Route::post('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'storeAchat'])->name('user.storeAchat');
+Route::get('/tri_commentaire/{id}', [\App\Http\Controllers\JeuController::class,  'tri_commentaire'])->name('commentaire.tri');
 Route::get('/ajouterComment/{jid}', [\App\Http\Controllers\JeuController::class,  'ajouterComment'])->name('jeux.ajouterComment');
 Route::post('/storeComment/{jid}', [\App\Http\Controllers\JeuController::class,  'storeComment'])->name('jeux.storeComment');
+
 
 
 
