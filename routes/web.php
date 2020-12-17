@@ -37,3 +37,4 @@ Route::get('/tri', [\App\Http\Controllers\JeuController::class,  'tri'])->name('
 Route::get('/editeur/{edit}', [\App\Http\Controllers\JeuController::class,  'editeur'])->name('jeux.editeur');
 Route::get('/theme/{theme}', [\App\Http\Controllers\JeuController::class,  'theme'])->name('jeux.theme');
 Route::get('/mecanique/{meca}', [\App\Http\Controllers\JeuController::class,  'mecanique'])->name('jeux.mecanique');
+Route::post('/image-upload', 'GamesController@imageUploadPost');
