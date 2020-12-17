@@ -34,3 +34,4 @@ Route::get('/random', [\App\Http\Controllers\JeuController::class, 'randomJeu'])
 Route::get('/regle/{id}', [\App\Http\Controllers\JeuController::class, 'regle'])->name('jeux.regle');
 Route::get('/jeux/{id}', [\App\Http\Controllers\JeuController::class,  'show'])->name('jeux.show');
 Route::get('/tri', [\App\Http\Controllers\JeuController::class,  'tri'])->name('jeux.tri');
+Route::get('/editeur/{edit}', [\App\Http\Controllers\JeuController::class,  'editeur'])->name('jeux.editeur');
