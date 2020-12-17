@@ -79,5 +79,44 @@
     <h3>aucune jeu</h3>
 @endif
 
+<div><h2>Ajout d'un jeu</h2></div>
+<form action="{{route('jeux.storeGame')}}" method="post">
+    {{ csrf_field() }}
+    <label>Nom du jeu <input type="text" name="nom" placeholder="Nom du jeu"/></label>
+    <label><br/><br/>Description <input type="text" name="description" placeholder="Description du jeu"/></label>
+
+    <br/><br/>
+    <select size="1" name="nomTheme">
+        <option value="Thème">Thème</option>
+        @foreach($themes as $theme)
+            <option value="{{$theme->id}}">{{$theme->nom}}</option>
+        @endforeach
+    </select>
+
+    <br/><br/>
+    <select size="1" name="nomEditeur">
+        <option value="Editeur">Editeur</option>
+        @foreach($edits as $edit)
+            <option value="{{$edit->id}}">{{$edit->nom}}</option>
+        @endforeach
+    </select>
+
+    <br/><br/>
+    <select size="1" name="nomMeca">
+        <option value="Mécanique">Mécanique</option>
+        @foreach($mecaniques as $meca)
+            <option value="{{$meca->id}}">{{$meca->nom}}</option>
+        @endforeach
+    </select>
+
+    <label><br/><br/>Univers <input type="text" name="univers" placeholder="Univers"></label>
+    <label><br/><br/>URL média <input type="text" name="img"></label>
+    <label><br/><br/>Règles <input type="text" name="regles" placeholder="Règles"></label>
+    <label><br/><br/>Langue <input type="text" name="langue" placeholder="Langue"></label>
+    <label><br/><br/>Nombre de joueurs <input type="number" name="nbjoueurs"></label>
+    <label><br/><br/>Durée <input type="time" name="duree" placeholder="HHH:MM"></label>
+    <br/><br/><input type="submit" value="Ajouter"/>
+</form>
+
 </body>
 </html>

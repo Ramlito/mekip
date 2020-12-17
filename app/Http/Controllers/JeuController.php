@@ -9,6 +9,7 @@ use App\Models\Editeur;
 use App\Models\Theme;
 use App\Models\Mecanique;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class JeuController extends Controller
 {
@@ -51,24 +52,23 @@ class JeuController extends Controller
     public function tri_commentaire($id)
     {
         $jeu = Jeu::find($id);
-        $commentaires = $jeu->commentaire;
-        $commentaire_trié = [];
-        for ($i = 0; $i <= $jeu->commentaires; $i++){
+        $commentaires = $jeu->commentaires->toArray();
+        $commentaire_trie = [];
+        for ($i = 0; $i <= count($jeu->commentaires); $i++){
             $index =0;
-            $datecom = $jeu->commentaire[0]->date_com;
+            $datecom = $jeu->commentaires[1]->date_com;
             foreach ($commentaires as $commentaire) {
-                if ($datecom > $commentaire->date_com) {
-                    $datecom = $commentaire->date_com;
-                    $commentaire = $commentaire;
-                    $c = $index;
+                if ($datecom > $commentaire["date_com"]) {
+                    $datecom = $commentaire["date_com"];
+                    $com = $commentaire;
                 }
                 $index++;
             }
-            $commentaire_trié[] = $commentaires;
-            unset($commentaires[$c]);
+            $commentaire_trie[] = $com;
+            unset($commentaires[array_search($com, $commentaires)]);
         }
 
-        return view('commentaires.tri_commentaire', ['commentaires' => $commentaire_trié]);
+        return view('commentaires.tri_commentaire', ['commentaires' => $commentaire_trie]);
     }
 
     public function prix($id){
@@ -98,7 +98,6 @@ class JeuController extends Controller
         }
 
         $moyenne = $moyenne / sizeof($prix);
-
         $noteMin = 999999999999999;
         $noteMax = 0;
         $noteMoyenne = 0;
@@ -192,5 +191,64 @@ class JeuController extends Controller
         $commentaire->user_id=$user;
         $commentaire->save();
         return view('accueil');
+    }
+    public function meilleurs(){
+        $noteMoyenne = 0;
+        $jeux = Jeu::all();
+        $noteMin = 6;
+        $c = 0;
+        $best = [];
+        foreach ($jeux as $jeu) {
+            $noteMoyenne = 0;
+            $nb = 0;
+            foreach ($jeu->commentaires as $element) {
+                $note = $element->note;
+                $nb++;
+                $noteMoyenne += $note;
+            }
+            if ($nb != 0) {
+                $noteMoyenne = $noteMoyenne / $nb;
+            } else {
+                $noteMoyenne = -1;
+            }
+            $best[$jeu->id] = $noteMoyenne;
+        }
+        arsort($best);
+        $i = 0;
+        $tab = [];
+        foreach ($best as $id => $value){
+            $tab[] = Jeu::find($id);
+            $i++;
+            if ($i>=5){
+                break;
+            }
+        }
+        return view('jeux.best',['jeux'=>$tab]);
+        
+    }
+    public function storeGame(Request $request)
+    {
+        $uid = Auth::id();
+        $jeu = new Jeu();
+        $jeu->nom = $request->nom;
+        $jeu->description = $request->description;
+        $jeu->theme_id = $request->nomTheme;
+        $jeu->editeur_id = $request->nomEditeur;
+        $jeu->univers = $request->univers;
+        $jeu->url_media = $request->img;
+        $jeu->regles = $request->regles;
+        $jeu->langue = $request->langue;
+        $jeu->nombre_joueurs = $request->nbjoueurs;
+        $jeu->duree = $request->duree;
+        $jeu->user_id = $uid;
+        $jeu->save();
+        $tabMeca = array($request->nomMeca);
+        $jeu->mecaniques()->attach($tabMeca);
+        $jeu->save();
+        $jeux = Jeu::all();
+
+
+
+        return view('accueil', ['jeux'=>$jeux]);
     }
 }

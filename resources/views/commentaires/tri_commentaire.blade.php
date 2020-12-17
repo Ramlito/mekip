@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+html>
 <head>
-    <meta charset="UTF-8">
-    <title>Page d'accueil</title>
+    <title>Commentaires triés</title>
 </head>
 <body>
 @if (auth()->guest())
@@ -21,15 +19,20 @@
     @endif
 @else
     <p>Utilisateur déjà connecté</p>
-    <input method="POST" type="button" value="Logout" onClick="window.location.href='{{route('logout')}}'"/>
 @endif
 
-<h3><b><a href="http://localhost:8000/">Accueil</a></b></h3>
-<ul>
-    <li><a href="http://localhost:8000/jeux">Jeux</a></li>
-    <li><a href="http://localhost:8000/user">Information compte</a></li>
-    <li><a href="http://localhost:8000/random">Choix de 5 jeux aléatoires</a></li>
-    <li><a href="{{route('jeux.best')}}">Les 5 meilleurs jeux</a></li>
-</ul>
+<h2>La liste des commentaoires</h2>
+
+@if(!empty($commentaires))
+    @foreach($commentaires as $com)
+        <p><li>date du commentaire : {{$com["date_com"]}}</li>
+        commentaire : {{$com["commentaire"]}}</br>
+        note : {{$com["note"]}}
+        <br>
+    @endforeach
+@else
+    <h3>aucune jeu</h3>
+@endif
+
 </body>
 </html>
