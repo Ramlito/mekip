@@ -9,6 +9,7 @@ use App\Models\Editeur;
 use App\Models\Theme;
 use App\Models\Mecanique;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class JeuController extends Controller
 {
@@ -190,6 +191,40 @@ class JeuController extends Controller
         $commentaire->user_id=$user;
         $commentaire->save();
         return view('accueil');
+    }
+    public function meilleurs(){
+        $noteMoyenne = 0;
+        $jeux = Jeu::all();
+        $noteMin = 6;
+        $c = 0;
+        $best = [];
+        foreach ($jeux as $jeu) {
+            $noteMoyenne = 0;
+            $nb = 0;
+            foreach ($jeu->commentaires as $element) {
+                $note = $element->note;
+                $nb++;
+                $noteMoyenne += $note;
+            }
+            if ($nb != 0) {
+                $noteMoyenne = $noteMoyenne / $nb;
+            } else {
+                $noteMoyenne = -1;
+            }
+            $best[$jeu->id] = $noteMoyenne;
+        }
+        arsort($best);
+        $i = 0;
+        $tab = [];
+        foreach ($best as $id => $value){
+            $tab[] = Jeu::find($id);
+            $i++;
+            if ($i>=5){
+                break;
+            }
+        }
+        return view('jeux.best',['jeux'=>$tab]);
+        
     }
     public function storeGame(Request $request)
     {

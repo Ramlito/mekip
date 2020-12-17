@@ -47,6 +47,6 @@ Route::post('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'sto
 Route::get('/tri_commentaire/{id}', [\App\Http\Controllers\JeuController::class,  'tri_commentaire'])->name('commentaire.tri');
 Route::get('/ajouterComment/{jid}', [\App\Http\Controllers\JeuController::class,  'ajouterComment'])->name('jeux.ajouterComment');
 Route::post('/storeComment/{jid}', [\App\Http\Controllers\JeuController::class,  'storeComment'])->name('jeux.storeComment');
-
+Route::get('/best', [\App\Http\Controllers\JeuController::class, 'meilleurs'])->name('jeux.best');
 
 
