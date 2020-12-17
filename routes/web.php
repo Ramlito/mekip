@@ -35,3 +35,5 @@ Route::get('/regle/{id}', [\App\Http\Controllers\JeuController::class, 'regle'])
 Route::get('/jeux/{id}', [\App\Http\Controllers\JeuController::class,  'show'])->name('jeux.show');
 Route::get('/tri', [\App\Http\Controllers\JeuController::class,  'tri'])->name('jeux.tri');
 Route::get('/editeur/{edit}', [\App\Http\Controllers\JeuController::class,  'editeur'])->name('jeux.editeur');
+Route::get('/theme/{theme}', [\App\Http\Controllers\JeuController::class,  'theme'])->name('jeux.theme');
+Route::get('/mecanique/{meca}', [\App\Http\Controllers\JeuController::class,  'mecanique'])->name('jeux.mecanique');
