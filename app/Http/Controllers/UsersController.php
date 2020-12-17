@@ -10,6 +10,6 @@ class UsersController extends Controller
     public function index()
     {
         $users = Auth::user();
-        return view('users.index', ['users' => $users]);
+        return view('user.index', ['users' => $users]);
     }
 }
