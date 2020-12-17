@@ -71,8 +71,66 @@ class JeuController extends Controller
         foreach($prix as $element){
             $moyenne += $element;
         }
+
         $moyenne = $moyenne / sizeof($prix);
-        return view('jeux.prix', ['jeu' => $jeu, 'min' => $min, 'max' => $max, 'moyenne' => $moyenne, 'nbJoueurs' => $nbJoueurs]);
+
+        $noteMin = 999999999999999;
+        $noteMax = 0;
+        $noteMoyenne = 0;
+        $listeNote = [];
+        $nbCommentaires = 0;
+
+        foreach($jeu -> commentaires as $element){
+            $nbCommentaires++;
+            $note = $element -> note;
+            $listeNote[] = $note;
+        }
+
+        foreach($listeNote as $note){
+            if($note > $noteMax){
+                $noteMax = $note;
+            }
+        }
+
+        foreach($listeNote as $note){
+            if($note < $noteMin){
+                $noteMin = $note;
+            }
+        }
+
+        foreach($listeNote as $note){
+            $noteMoyenne += $note;
+        }
+
+        if (sizeof($listeNote) != 0){
+            $noteMoyenne = $noteMoyenne / sizeof($listeNote);
+        }
+        else{
+            $notemoyenne = 0;
+            $noteMin = "Non défini";
+            $noteMax = "Non défini";
+            $noteMoyenne = "Non défini";
+        }
+
+        $nbCommentairesTotal = 0;
+        $jeux = Jeu::all();
+        foreach($jeux as $element){
+            foreach($element -> commentaires as $com){
+                $nbCommentairesTotal++;
+            }
+        }
+
+        return view('jeux.prix', ['jeu' => $jeu,
+            'min' => $min, 'max' => $max,
+            'moyenne' => $moyenne,
+            'nbJoueurs' => $nbJoueurs,
+            'noteMin' => $noteMin,
+            'noteMax' => $noteMax,
+            'noteMoyenne' => $noteMoyenne,
+            'nbCommentaires' => $nbCommentaires,
+            'nbCommentairesTotal' => $nbCommentairesTotal,
+            'jeux' => $jeux,
+            ]);
     }
     
     public function editeur($edit){
