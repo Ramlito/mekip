@@ -10,7 +10,7 @@
 @if(!empty($jeux))
     <ul>
         @foreach($jeux as $jeu)
-            @if(($jeu->editeur->nom)==$edit)
+            @if(($jeu->theme->nom)==$theme)
                 <li>Nom du jeu : {{$jeu->nom}}, le thème : {{$jeu->theme->nom}}, la durée d'une partie : {{$jeu->duree}}, le nombre de joueurs : {{$jeu->nombre_joueurs}}
                     <a href="{{route('jeux.show',['id'=>$jeu->id])}}">détails</a></li>
             @endif
