@@ -9,7 +9,7 @@ class Jeu extends Model {
     use HasFactory;
 
     protected $table = 'jeux';
-    public $timeStamps = false;
+    public $timestamps = false;
 
     protected $fillable = ['titre','univers','nom', 'description', 'regles', 'langue',
         'url_media', 'age', 'nombre_joueurs', 'categorie', 'duree'];
