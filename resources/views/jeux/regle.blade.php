@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<div><h1>{{$jeu->nom}}}</h1></div>
+<div><h1>{{$jeu->nom}}</h1></div>
 <p>{{$jeu->regles}}</p>
 <ul>
     <a href="{{route('jeux.show',['id'=>$jeu->id])}}"><li>Retour à la page du jeu</li></a>

@@ -37,7 +37,23 @@ class GamesController extends Controller
         return 'Nom : ' . $request->input('nom')
             . '<br/>Description : ' . $request->input('description')
             . '<br/>Thème : ' . $request->input('theme')
-            . '<br/>Editeur : ' . $request->input('editeur');
+            . '<br/>Editeur : ' . $request->input('editeur')
+            . '<br/>Mécanique : ' . $request->input('mecanique')
+            . '<br/>Univers : ' . $request->input('univers')
+            . '<br/>Photo : ' . $request->input('img')
+            . '<br/>Règles : ' . $request->input('regles')
+            . '<br/>Langue : ' . $request->input('langue')
+            . '<br/>Nombre de joueurs : ' . $request->input('nbjoueurs')
+            . '<br/>Durée : ' . $request->input('duree') . " heures";
+    }
+    public function imageUploadPost()
+    {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
     }
 
     /**
