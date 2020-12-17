@@ -19,23 +19,18 @@
     @endif
     @else
         <p>Utilisateur déjà connecté</p>
+        <p><a href="http://localhost:8000/dashboard">Retour au dashboard</a></p>
+        <p><a href="{{Route('user.collection')}}">Retour au dashboard</a></p>
 @endif
 
 
-<h2>La liste des jeux</h2>
+<h2>Information de l'utilisateur</h2>
 
-<a href="http://127.0.0.1:8000/tri">Trier la liste</a>
+<ul>
+    <li>Nom : {{$users['last name']}}</li> {{--si nom colonne avec espace--}}
+    <li>mail : {{$users->email}}</li>
+</ul>
 
-@if(!empty($jeux))
-    <ul>
-        @foreach($jeux as $jeu)
-            <li>Nom du jeu : {{$jeu->nom}}, le thème : {{$jeu->theme->nom}}, la durée d'une partie : {{$jeu->duree}}, le nombre de joueurs : {{$jeu->nombre_joueurs}}
-                <a href="{{route('jeux.show',['id'=>$jeu->id])}}">détails</a> <a href="{{route('user.ajouterAchat',['jid'=>$jeu->id])}}">Ajouter à ma collection</a></li>
-        @endforeach
-    </ul>
-@else
-    <h3>aucune jeu</h3>
-@endif
 
 </body>
 </html>

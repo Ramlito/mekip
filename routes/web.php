@@ -38,3 +38,14 @@ Route::get('/editeur/{edit}', [\App\Http\Controllers\JeuController::class,  'edi
 Route::get('/theme/{theme}', [\App\Http\Controllers\JeuController::class,  'theme'])->name('jeux.theme');
 Route::get('/mecanique/{meca}', [\App\Http\Controllers\JeuController::class,  'mecanique'])->name('jeux.mecanique');
 Route::post('/image-upload', 'GamesController@imageUploadPost');
+Route::get('/user', [\App\Http\Controllers\UsersController::class,  'index'])->name('user.index');
+Route::get('/collection', [\App\Http\Controllers\UsersController::class,  'collection'])->name('user.collection');
+Route::get('/suppression/{jid}', [\App\Http\Controllers\UsersController::class,  'suppression'])->name('user.suppression');
+Route::get('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'ajouterAchat'])->name('user.ajouterAchat');
+Route::post('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'storeAchat'])->name('user.storeAchat');
+Route::get('/collection', [\App\Http\Controllers\UsersController::class,  'collection'])->name('user.collection');
+Route::get('/suppression/{jid}', [\App\Http\Controllers\UsersController::class,  'suppression'])->name('user.suppression');
+Route::get('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'ajouterAchat'])->name('user.ajouterAchat');
+Route::post('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'storeAchat'])->name('user.storeAchat');
+
+

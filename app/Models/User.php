@@ -29,6 +29,7 @@ class User extends Authenticatable
         'pseudo',
         'email',
         'password',
+        'collection',
     ];
 
     /**
