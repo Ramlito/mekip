@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use App\Models\Jeu;
 use App\Models\Editeur;
 use App\Models\Theme;
 use App\Models\Mecanique;
+use Illuminate\Support\Facades\Auth;
 
 class JeuController extends Controller
 {
@@ -57,5 +59,26 @@ class JeuController extends Controller
     public function mecanique($meca){
         $jeux = Jeu::all();
         return view('jeux.mecanique',['jeux' => $jeux,'meca' => $meca]);
+    }
+    public function ajouterComment($jid){
+        return view('jeux.ajouterComment',['jid'=>$jid]);
+    }
+    public function storeComment(Request $request ,$jid){
+        $validated = $request->validate([
+            'commentaire' => 'required|max:255',
+            'note' => 'required|numeric',
+        ]);
+        if(Jeu::find($jid) == null){
+            return abort(404);
+        }
+        $user = Auth::id();
+        $commentaire = new Commentaire();
+        $commentaire->commentaire = $request->commentaire;
+        $commentaire->date_com = date("Y-m-d H:i:s");
+        $commentaire->note = $request->note;
+        $commentaire->jeu_id = $jid;
+        $commentaire->user_id=$user;
+        $commentaire->save();
+        return view('accueil');
     }
 }
