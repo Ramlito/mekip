@@ -13,7 +13,6 @@ class UsersController extends Controller
     {
         $users = Auth::user();
         return view('user.index', ['users' => $users]);
-
     }
 
     public function collection(){
@@ -30,6 +29,7 @@ class UsersController extends Controller
     public function suppression($jid){
         $user = Auth::user();
         $user->ludo_perso()->detach($jid);
+        return view('accueil');
     }
 
     public function ajouterAchat($jid){
@@ -39,5 +39,6 @@ class UsersController extends Controller
     public function storeAchat(Request $request ,$jid){
         $user = Auth::user();
         $user->ludo_perso()->attach($jid,['prix'=> $request->prix, 'date_achat'=> $request->dateAchat, 'lieu'=>$request->lieu]);
+        return view('accueil');
     }
 }

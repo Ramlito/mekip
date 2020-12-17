@@ -23,6 +23,9 @@
         note : {{$com->note}}
             <br>
 @endforeach
+@if(auth()->check())
+    <a href="{{route('jeux.ajouterComment', $jeu->id)}}">Ajouter un commentaire</a>
+@endif
 </ul>
 {{--<x-carte-jeu :jeu="$jeu"></x-carte-jeu>--}}
 

@@ -28,7 +28,7 @@
     <li><a href="http://localhost:8000/jeux">Jeux</a></li>
 </ul>
 <ul>
-    <li><a href="http://localhost:8000/users">Information compte</a></li>
+    <li><a href="http://localhost:8000/user">Information compte</a></li>
 </ul>
 </body>
 </html>

@@ -37,12 +37,16 @@ Route::get('/tri', [\App\Http\Controllers\JeuController::class,  'tri'])->name('
 Route::post('/editeur', [\App\Http\Controllers\JeuController::class,  'editeur'])->name('jeux.editeur');
 Route::post('/theme', [\App\Http\Controllers\JeuController::class,  'theme'])->name('jeux.theme');
 Route::post('/mecanique', [\App\Http\Controllers\JeuController::class,  'mecanique'])->name('jeux.mecanique');
+Route::get('/prix/{id}', [\App\Http\Controllers\JeuController::class,  'prix'])->name('jeux.prix');
 Route::post('/image-upload', 'GamesController@imageUploadPost');
 Route::get('/user', [\App\Http\Controllers\UsersController::class,  'index'])->name('user.index');
 Route::get('/collection', [\App\Http\Controllers\UsersController::class,  'collection'])->name('user.collection');
 Route::get('/suppression/{jid}', [\App\Http\Controllers\UsersController::class,  'suppression'])->name('user.suppression');
 Route::get('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'ajouterAchat'])->name('user.ajouterAchat');
 Route::post('/achat/{jid}', [\App\Http\Controllers\UsersController::class,  'storeAchat'])->name('user.storeAchat');
+Route::get('/tri_commentaire/{id}', [\App\Http\Controllers\JeuController::class,  'tri_commentaire'])->name('commentaire.tri');
+Route::get('/ajouterComment/{jid}', [\App\Http\Controllers\JeuController::class,  'ajouterComment'])->name('jeux.ajouterComment');
+Route::post('/storeComment/{jid}', [\App\Http\Controllers\JeuController::class,  'storeComment'])->name('jeux.storeComment');
 
 
 
