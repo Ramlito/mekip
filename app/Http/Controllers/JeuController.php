@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jeu;
+use App\Models\Editeur;
+use App\Models\Theme;
+use App\Models\Mecanique;
 
 class JeuController extends Controller
 {
@@ -33,7 +36,8 @@ class JeuController extends Controller
     }
     public function show($id){
         $jeu = Jeu::find($id);
-        return view('jeux.show',['jeu' => $jeu]);
+        $coms = $jeu->commentaires;
+        return view('jeux.show',['jeu' => $jeu,'coms' => $coms]);
     }
     public function tri(){
         $jeux = Jeu::all()->sortBy('nom');
@@ -67,5 +71,20 @@ class JeuController extends Controller
         }
         $moyenne = $moyenne / sizeof($prix);
         return view('jeux.prix', ['jeu' => $jeu, 'min' => $min, 'max' => $max, 'moyenne' => $moyenne, 'nbJoueurs' => $nbJoueurs]);
+    }
+    
+    public function editeur($edit){
+        $jeux = Jeu::all();
+        return view('jeux.editeur',['jeux' => $jeux,'edit' => $edit]);
+    }
+
+    public function theme($theme){
+        $jeux = Jeu::all();
+        return view('jeux.theme',['jeux' => $jeux,'theme' => $theme]);
+    }
+
+    public function mecanique($meca){
+        $jeux = Jeu::all();
+        return view('jeux.mecanique',['jeux' => $jeux,'meca' => $meca]);
     }
 }
