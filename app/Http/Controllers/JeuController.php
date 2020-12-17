@@ -157,7 +157,7 @@ class JeuController extends Controller
             ]);
     }
 
-    public function editeur($edit){
+    public function editeur(Request $request){
         $jeux = Jeu::all();
         return view('jeux.editeur',['jeux' => $jeux,'edit' => $request->nomEditeur]);
     }
