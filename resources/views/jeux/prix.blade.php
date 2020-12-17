@@ -1,3 +1,4 @@
+<html>
 <head>
     <title>Statistiques du jeu {{$jeu->nom}}</title>
 </head>
