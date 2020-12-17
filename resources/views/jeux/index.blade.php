@@ -19,8 +19,17 @@
     @endif
     @else
         <p>Utilisateur déjà connecté</p>
+        <form method="GET" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">
+                    Déconnexion
+            </button>
+        </form>
 @endif
 
+<p style="text-align: right">
+    <a href="http://localhost:8000/">Accueil</a>
+</p>
 
 <h2>La liste des jeux</h2>
 <p>
