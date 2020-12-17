@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet"
     <title>Page d'accueil</title>
 </head>
 <body>
