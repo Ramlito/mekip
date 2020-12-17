@@ -27,6 +27,7 @@ class UsersController extends Controller
     public function suppression($jid){
         $user = Auth::user();
         $user->ludo_perso()->detach($jid);
+        return view('accueil');
     }
     public function ajouterAchat($jid){
         return view('user.ajouterJeu',['jid'=>$jid]);
@@ -34,7 +35,6 @@ class UsersController extends Controller
     public function storeAchat(Request $request ,$jid){
         $user = Auth::user();
         $user->ludo_perso()->attach($jid,['prix'=> $request->prix, 'date_achat'=> $request->dateAchat, 'lieu'=>$request->lieu]);
+        return view('accueil');
     }
 }
-
-
