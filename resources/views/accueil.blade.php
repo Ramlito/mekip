@@ -21,14 +21,14 @@
     @endif
 @else
     <p>Utilisateur déjà connecté</p>
+    <input method="POST" type="button" value="Logout" onClick="window.location.href='{{route('logout')}}'"/>
 @endif
 
 <h3><b><a href="http://localhost:8000/">Accueil</a></b></h3>
 <ul>
     <li><a href="http://localhost:8000/jeux">Jeux</a></li>
-</ul>
-<ul>
     <li><a href="http://localhost:8000/user">Information compte</a></li>
+    <li><a href="http://localhost:8000/random">Choix de 5 jeux aléatoires</a></li>
     <li><a href="{{route('jeux.best')}}">Les 5 meilleurs jeux</a></li>
 </ul>
 </body>

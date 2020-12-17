@@ -224,6 +224,8 @@ class JeuController extends Controller
             }
         }
         return view('jeux.best',['jeux'=>$tab]);
+        
+    }
     public function storeGame(Request $request)
     {
         $uid = Auth::id();
