@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jeu;
+use App\Models\Editeur;
 
 class JeuController extends Controller
 {
@@ -33,10 +34,26 @@ class JeuController extends Controller
     }
     public function show($id){
         $jeu = Jeu::find($id);
-        return view('jeux.show',['jeu' => $jeu]);
+        $coms = $jeu->commentaires;
+        return view('jeux.show',['jeu' => $jeu,'coms' => $coms]);
     }
     public function tri(){
         $jeux = Jeu::all()->sortBy('nom');
         return view('jeux.tri', ['jeux' => $jeux]);
     }
+
+    /*public function editeur($edit){
+        $jeux = Jeu::all();
+        return view('jeux.editeur',['jeux' => $jeux,'edit' => $edit]);
+    }*/
+    /*public function theme($themes){
+        $tem=Theme::WHERE('nom','like', $themes)->get()[0];
+        $jeux = Jeu::where('id_theme',$tem->id)->get();
+        return view('jeux.theme',['jeux' => $jeux]);
+    }
+    public function meca($mecha){
+        $mech=Mecanique::WHERE('nom','like', $mecha)->get();
+        $jeux = Jeu::where('id_mecanique',$mech->id)->get();
+        return view('jeux.meca',['jeux' => $jeux]);
+    }*/
 }
