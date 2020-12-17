@@ -51,24 +51,23 @@ class JeuController extends Controller
     public function tri_commentaire($id)
     {
         $jeu = Jeu::find($id);
-        $commentaires = $jeu->commentaire;
-        $commentaire_trié = [];
-        for ($i = 0; $i <= $jeu->commentaires; $i++){
+        $commentaires = $jeu->commentaires->toArray();
+        $commentaire_trie = [];
+        for ($i = 0; $i <= count($jeu->commentaires); $i++){
             $index =0;
-            $datecom = $jeu->commentaire[0]->date_com;
+            $datecom = $jeu->commentaires[1]->date_com;
             foreach ($commentaires as $commentaire) {
-                if ($datecom > $commentaire->date_com) {
-                    $datecom = $commentaire->date_com;
-                    $commentaire = $commentaire;
-                    $c = $index;
+                if ($datecom > $commentaire["date_com"]) {
+                    $datecom = $commentaire["date_com"];
+                    $com = $commentaire;
                 }
                 $index++;
             }
-            $commentaire_trié[] = $commentaires;
-            unset($commentaires[$c]);
+            $commentaire_trie[] = $com;
+            unset($commentaires[array_search($com, $commentaires)]);
         }
 
-        return view('commentaires.tri_commentaire', ['commentaires' => $commentaire_trié]);
+        return view('commentaires.tri_commentaire', ['commentaires' => $commentaire_trie]);
     }
 
     public function prix($id){
