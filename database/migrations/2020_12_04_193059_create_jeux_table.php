@@ -16,6 +16,8 @@ class CreateJeuxTable extends Migration
         Schema::create('jeux', function (Blueprint $table) {
             $table->id();
             $table->string('nom', 100);
+            $table->string('titre', 100);
+            $table->text('univers');
             $table->text('description');
             $table->text('regles')->nullable(true);
             $table->string('langue')->default('Fr');

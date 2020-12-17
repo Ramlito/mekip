@@ -26,6 +26,8 @@ class JeuFactory extends Factory {
         $editeurs_ids = Editeur::all()->pluck('id');
         $user_ids = User::all()->pluck('id');
         return [
+            'titre' => $this->faker->words(2, true),
+            'univers' => $this->faker->text(100),
             'nom' => $this->faker->words(2, true),
             'description' => $this->faker->text(300),
             'regles' => $this->faker->text(300),
